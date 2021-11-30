@@ -18,3 +18,6 @@ function md {
 alias ls="ls -AF1x"
 alias lss="ls -AF1"
 alias ll="ls -AF1l"
+
+alias ..="cd .."
+alias ...="cd ../.."
