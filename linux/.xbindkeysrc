@@ -1,0 +1,17 @@
+# pipewire-pulse audio
+"pactl set-sink-mute @DEFAULT_SINK@ toggle"
+  XF86AudioMute
+
+"pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+  XF86AudioMicMute
+
+# pamixer is used here over pactl because it prevents pushing the sink volume past 100%
+"pamixer --decrease 5"
+  XF86AudioLowerVolume
+
+"pamixer --increase 5"
+  XF86AudioRaiseVolume
+
+# imlib2 tools comes with feh and can be used for taking screenshots.
+"imlib2_grab ~/screenshot.png"
+  Print
