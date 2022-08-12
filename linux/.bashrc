@@ -32,5 +32,11 @@ alias pscw="watch -n0 cat /sys/class/power_supply/BAT0/capacity"
 alias reboot="sudo systemctl stop dhcpcd; sudo reboot"
 alias halt="sudo systemctl stop dhcpcd; sudo shutdown -h now"
 
+# disable most hist files
 export LESSHISTFILE=/dev/null
+export NODE_REPL_HISTORY=""
 export PYTHONSTARTUP=~/.pythonrc
+
+# fnm setup
+export PATH=/home/sammynilla/.fnm:$PATH
+eval "`fnm env --use-on-cd`"
