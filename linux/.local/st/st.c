@@ -960,7 +960,7 @@ ttyresize(int tw, int th)
 }
 
 void
-ttyhangup()
+ttyhangup(void)
 {
 	/* Send SIGHUP to shell */
 	kill(pid, SIGHUP);
@@ -2090,7 +2090,8 @@ strhandle(void)
 				fprintf(stderr, "erresc: invalid %s color: %s\n",
 				        osc_table[j].str, p);
 			} else {
-				tfulldirt();
+				/* tfulldirt(); */
+        redraw();
 			}
 			return;
 		case 4: /* color set */
@@ -2109,15 +2110,20 @@ strhandle(void)
 				fprintf(stderr, "erresc: invalid color j=%d, p=%s\n",
 				        j, p ? p : "(null)");
 			} else {
-				if (j == defaultbg)
-					xclearwin();
-				redraw();
+				/*
+				 * TODO if defaultbg color is changed, borders
+				 * are dirty
+				 */
+				tfulldirt();
 			}
 			return;
 		}
 		break;
 	case 'k': /* old title set compatibility */
-		xsettitle(strescseq.buf, 0);
+/* <<<<<<< old */
+/* 		xsettitle(strescseq.buf); */
+/* ======= */
+		xsettitle(STRESCARGREST(0), 0);
 		return;
 	case 'P': /* DCS -- Device Control String */
 	case '_': /* APC -- Application Program Command */
