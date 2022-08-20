@@ -26,6 +26,9 @@ xmodmap -e "keycode 37="        # unmap LControl
 # adjust typematic rate of keyboard
 xset r rate 200 60
 
-~/.fehbg &
+# set wallpaper
+hsetroot -cover "$HOME/.config/wallpaper.png"
+
+xautolock -time 10 -locker slock &
 #picom &
 exec dwm
