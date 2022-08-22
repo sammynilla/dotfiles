@@ -12,6 +12,9 @@
 "pamixer --increase 5"
   XF86AudioRaiseVolume
 
+"slock"
+  XF86ScreenSaver
+
 # imlib2 tools comes with feh and can be used for taking screenshots.
 "imlib2_grab ~/screenshot.png"
   Print
