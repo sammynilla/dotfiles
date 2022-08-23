@@ -26,8 +26,14 @@ xmodmap -e "keycode 37="        # unmap LControl
 # adjust typematic rate of keyboard
 xset r rate 200 60
 
-# set wallpaper
-hsetroot -cover "$HOME/.config/wallpaper.png"
+# sets wallpaper using hsetroot and imlib2
+wallpaper=$HOME/.config/wallpaper.*
+[ -f $wallpaper ] && hsetroot -cover $wallpaper
+
+# allow for quick reloading of dwm when sigkill
+while :; do
+  ssh-agent dwm
+done
 
 xautolock -time 10 -locker slock &
 #picom &
