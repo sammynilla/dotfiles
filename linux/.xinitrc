@@ -30,11 +30,11 @@ xset r rate 200 60
 wallpaper=$HOME/.config/wallpaper.*
 [ -f $wallpaper ] && hsetroot -cover $wallpaper
 
+xautolock -time 10 -locker slock &
+#picom &
+#exec dwm
+
 # allow for quick reloading of dwm when sigkill
 while :; do
   ssh-agent dwm
 done
-
-xautolock -time 10 -locker slock &
-#picom &
-exec dwm
