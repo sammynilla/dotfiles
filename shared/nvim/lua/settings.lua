@@ -1,10 +1,4 @@
--- https://neovim.discourse.group/t/introducing-filetype-lua-and-a-call-for-help/1806
-vim.g.do_filetype_lua = 1
-vim.g.did_load_filetypes = 0
 pcall(require, "impatient")
-
--- NOTE: this won't function properly on windows
-vim.g.python3_host_prog = "~/neovim-env/bin/python"
 
 -- disable some built-in plugins that we don't need. increase load times.
 local disabled_plugins = {
@@ -18,6 +12,7 @@ local disabled_plugins = {
   "2html_plugin",
   "tutor_mode_plugin",
   "matchit",
+  -- "matchparen",
   "netrwPlugin",
   "spellfile_plugin",
 }
@@ -26,13 +21,14 @@ for _, plugin in ipairs(disabled_plugins) do
 end
 
 -- disable providers until we need them. increases checkhealth runtime.
-local disabled_providers = { "node", "perl", "ruby", }
+local disabled_providers = { "node", "perl", "python3", "ruby", }
 for _, provider in ipairs(disabled_providers) do
   vim.g["loaded_" .. provider .. "_provider"] = 0
 end
 
 -- [[ general ]] --
 vim.o.title = true -- change the terminal's title
+vim.o.mouse = false;
 vim.o.termguicolors = true -- necessary in case it's not terminal default.
 vim.o.clipboard = "unnamedplus"
 vim.opt.shortmess:append("I") -- disable nvim intro
@@ -91,4 +87,6 @@ vim.o.ignorecase = true -- ignore case when searching with / or ?
 vim.o.smartcase = true  -- ignore case if search pattern is all lowercase, case-sensitive otherwise
 vim.opt.shortmess:append("s") -- dont give search hit bottom messages
 
-require("colorscheme")
+vim.cmd([[colorscheme slate]])
+
+-- require("colorscheme")
