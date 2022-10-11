@@ -1,20 +1,21 @@
-local ok, lsp_installer = pcall(require, "nvim-lsp-installer")
+local ok, lspconfig = pcall(require, "mason-lspconfig")
 if not ok then
   return
 end
 
--- local server_list = { "clangd", "sumneko_lua", "tailwindcss", }
 local server_list = { "clangd", "sumneko_lua", }
-lsp_installer.setup({
-  servers = server_list,
-  automatic_installation = true,
+require("mason").setup({
   ui = {
     icons = {
-      server_installed = "✓",
-      server_pending = "⧖",
-      server_uninstalled = "✗"
-    }
-  }
+      package_installed = "✓",
+      package_pending = "⧖",
+      package_uninstalled = "✗"
+    },
+  },
+})
+lspconfig.setup({
+  servers = server_list,
+  automatic_installation = true,
 })
 
 local on_attach = function(client, bufnr)

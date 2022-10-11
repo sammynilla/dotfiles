@@ -92,17 +92,11 @@ return packer.startup(function(use)
 
   -- [[ lsp ]] --
   use ({
-    "williamboman/nvim-lsp-installer", opt = true,
-    setup = function()
-      require("utils").packer_lazy_load("nvim-lsp-installer")
-      -- reload the current file so lsp actually starts for it
-      vim.defer_fn(function()
-        vim.cmd([[if &ft == "packer" | echo "" | else | silent! e %]])
-      end, 0)
-    end,
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
   })
   use ({
-    "neovim/nvim-lspconfig", after = "nvim-lsp-installer",
+    "neovim/nvim-lspconfig", after = "mason-lspconfig.nvim",
     config = function() require("lsp") end
   })
 
