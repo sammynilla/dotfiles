@@ -1,7 +1,6 @@
 local fn = vim.fn
 local execute = vim.api.nvim_command
 
--- bootstrap
 local PACKER_BOOTSTRAP = nil
 local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -12,15 +11,14 @@ if fn.empty(fn.glob(install_path)) > 0 then
     "https://github.com/wbthomason/packer.nvim",
     install_path,
   })
-  execute("packadd packer.nvim")
 end
 
--- packer in optional requires the use of packadd to function
+-- packer as an optional package requires the use of packadd to function
 execute("packadd packer.nvim")
 
 -- handle edge-case where initial startup happens without a connection
-local ok, packer = pcall(require, "packer")
-if not ok then
+local has_packer, packer = pcall(require, "packer")
+if not has_packer then
   return
 end
 
@@ -50,22 +48,12 @@ packer.init({
 return packer.startup(function(use)
   use ({ "wbthomason/packer.nvim", opt = true })
   use ({ "lewis6991/impatient.nvim" })
+  use ({ "nvim-lua/plenary.nvim" })
 
   -- [[ user interface ]] --
   use ({
-    "rebelot/kanagawa.nvim", after = "packer.nvim",
-    run = function()
-      execute("luafile ".. fn.stdpath("config") .. "/lua/colorscheme.lua")
-    end,
-  })
-  use ({ "romgrk/fzy-lua-native" })
-  -- use ({ "nixprime/cpsm" })
-  use ({
-    -- occasionally UpdateRemotePlugins seems to fail? not sure how to get to
-    -- work with deferred loading
-    "gelguy/wilder.nvim",
-    run = function() vim.cmd([[:UpdateRemotePlugins]]) end,
-    config = function() require("plugins.configs.wilder") end,
+    "nvim-telescope/telescope.nvim", tag = "0.1.0",
+    requires = { "nvim-lua/plenary.nvim" },
   })
 
   -- [[ syntax ]] --
@@ -96,7 +84,7 @@ return packer.startup(function(use)
     "norcalli/nvim-colorizer.lua", event = "BufRead",
     config = function() default_package_setup("colorizer") end,
   })
-  use ({ -- jump to line numbers
+  use ({ -- peek and jump to line numbers
     "nacro90/numb.nvim", event = "CmdlineEnter",
     config = function() default_package_setup("numb") end,
   })
@@ -118,10 +106,10 @@ return packer.startup(function(use)
     config = function() require("lsp") end
   })
 
-  -- -- [[ comment ]] --
+  -- [[ comment ]] --
   use ({ "tpope/vim-commentary", event = "BufRead", })
 
-  -- -- [[ completion ]] --
+  -- [[ completion ]] --
   use ({
     "hrsh7th/nvim-cmp", event = "InsertEnter", module = "cmp_nvim_lsp",
     config = function() require("plugins.configs.cmp") end,
@@ -131,7 +119,7 @@ return packer.startup(function(use)
   use ({ "hrsh7th/cmp-buffer", after = "cmp-nvim-lsp", })
   use ({ "saadparwaiz1/cmp_luasnip", after = "LuaSnip", })
 
-  -- -- [[ snippets ]] --
+  -- [[ snippets ]] --
   use ({ "L3MON4D3/LuaSnip", after = "nvim-cmp", })
 
   -- [[ git ]] --

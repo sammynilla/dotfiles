@@ -64,3 +64,7 @@ local hlslens_commands = {
 }
 map("n", "n", hlslens_commands[1], { silent = true })
 map("n", "N", hlslens_commands[2], { silent = true })
+
+map("n", "<Leader>ff", ":Telescope fd<cr>", { silent = true })
+map("n", "<Leader>fg", ":Telescope live_grep<cr>", { silent = true })
+map("n", "<Leader>fb", ":Telescope buffers<cr>", { silent = true })
