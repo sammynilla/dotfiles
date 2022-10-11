@@ -1,6 +1,7 @@
 local _M = {}
 
-_M.signs = { Error = "", Warn = "", Hint = "", Info = "" }
+-- _M.signs = { Error = "", Warn = "", Hint = "", Info = "" }
+_M.signs = { Error = "e", Warn = "w", Hint = "h", Info = "i" }
 
 _M.packer_lazy_load = function(plugin, timer)
   if plugin then
