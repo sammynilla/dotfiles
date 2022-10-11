@@ -1,4 +1,4 @@
-[[ -f ~/.bashrc ]] && . ~/.bashrc
+[ -f "$HOME/.bashrc" ] && . "$HOME"/.bashrc
 
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
   exec startx &> /dev/null

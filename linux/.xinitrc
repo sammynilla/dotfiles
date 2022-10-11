@@ -18,21 +18,16 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
   unset f
 fi
 
-# key bindings
-xbindkeys                       # source ~/.xbindkeysrc
-setxkbmap -option ctrl:nocaps   # map CapsLock to LControl
-xmodmap -e "keycode 37="        # unmap LControl
-
-# adjust typematic rate of keyboard
-xset r rate 200 60
+xbindkeys           # source ~/.xbindkeysrc
+xset r rate 200 60  # adjust typematic rate of keyboard
 
 # sets wallpaper using hsetroot and imlib2
-wallpaper=$HOME/.config/wallpaper.*
-[ -f $wallpaper ] && hsetroot -cover $wallpaper
+wallpaperbg=$HOME/.config/wallpaper.png
+[ -f "$wallpaperbg" ] && hsetroot -cover "$wallpaperbg"
 
 xautolock -time 10 -locker slock &
-#picom &
-#exec dwm
+dwmblocks &
+# exec dwm
 
 # allow for quick reloading of dwm when sigkill
 while :; do

@@ -2,8 +2,9 @@
 "pactl set-sink-mute @DEFAULT_SINK@ toggle"
   XF86AudioMute
 
-"pactl set-source-mute @DEFAULT_SOURCE@ toggle"
-  XF86AudioMicMute
+# uncomment if you want to use the system microphone
+# "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+#   XF86AudioMicMute
 
 # pamixer is used here over pactl because it prevents pushing the sink volume past 100%
 "pamixer --decrease 5"
@@ -15,6 +16,6 @@
 "slock"
   XF86ScreenSaver
 
-# imlib2 tools comes with feh and can be used for taking screenshots.
+# our dwm build utilizes imlib2 for icons, which can be used for taking screenshots.
 "imlib2_grab ~/screenshot.png"
   Print
