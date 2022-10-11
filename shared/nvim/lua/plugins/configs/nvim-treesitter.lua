@@ -1,7 +1,5 @@
 local installed_languages = {
-  -- "c" parser is installed by default
-  "cpp", "css", "javascript", "json", "lua", "markdown", "typescript", "vim",
-  "vue",
+  "bash", "cpp", "lua", "markdown", "vim",
 }
 
 require("nvim-treesitter.configs").setup({
@@ -9,7 +7,7 @@ require("nvim-treesitter.configs").setup({
   highlight = { enable = true, },
   indent = {
     enable = true,
-    disable = { "c", "yaml", },
+    disable = { "yaml", },
   },
   playground = { enable = true, },
   autotag = { enable = true, },

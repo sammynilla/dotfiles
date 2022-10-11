@@ -3,7 +3,8 @@ if not ok then
   return
 end
 
-local server_list = { "clangd", "sumneko_lua", "tailwindcss", }
+-- local server_list = { "clangd", "sumneko_lua", "tailwindcss", }
+local server_list = { "clangd", "sumneko_lua", }
 lsp_installer.setup({
   servers = server_list,
   automatic_installation = true,
