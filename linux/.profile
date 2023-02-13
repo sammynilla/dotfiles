@@ -7,7 +7,7 @@ LESSHISTFILE=/dev/null;       export LESSHISTFILE
 NODE_REPL_HISTORY="";         export NODE_REPL_HISTORY
 PYTHONSTARTUP=~/.pythonrc;    export PYTHONSTARTUP
 
-SYSTEMD_EDITOR=/usr/bin/nano; export SYSTEMD_EDITOR
+SYSTEMD_EDITOR=/usr/bin/vi;   export SYSTEMD_EDITOR
 EDITOR=/usr/bin/nvim;         export EDITOR
 VISUAL=/usr/bin/nvim;         export VISUAL
 
