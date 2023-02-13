@@ -23,7 +23,7 @@ local settings = {
 
 local _M = {}
 _M.setup = function(on_attach, capabilities)
-  require("lspconfig").sumneko_lua.setup({
+  require("lspconfig").lua_ls.setup({
     on_attach = function(client, bufnr)
       client.server_capabilities.document_formatting = false
       client.server_capabilities.document_range_formatting = false

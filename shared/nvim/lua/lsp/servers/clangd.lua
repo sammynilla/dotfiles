@@ -1,5 +1,5 @@
 local settings = {
-  filetypes = { "c", "cpp" }
+  filetypes = { "c", "cpp" },
 }
 
 local _M = {}
