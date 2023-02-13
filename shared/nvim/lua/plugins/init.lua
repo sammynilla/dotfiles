@@ -80,6 +80,7 @@ return packer.startup(function(use)
     "windwp/nvim-autopairs", event = "InsertEnter",
     config = function() default_package_setup("nvim-autopairs") end,
   })
+  -- use ({ "yaocccc/nvim-hlchunk", event = "BufRead", })
   use ({ -- TODO: look over the configurations for this
     "norcalli/nvim-colorizer.lua", event = "BufRead",
     config = function() default_package_setup("colorizer") end,
@@ -118,9 +119,12 @@ return packer.startup(function(use)
 
   -- [[ git ]] --
   use ({ "tpope/vim-fugitive" })
-  -- use ({ "tpope/vim-rhubarb" })
   use ({
     "junegunn/gv.vim", event = "CmdlineEnter",
+    requires = { "tpope/vim-fugitive" },
+  })
+  use ({
+    "tpope/vim-rhubarb",
     requires = { "tpope/vim-fugitive" },
   })
   use ({
