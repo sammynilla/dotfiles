@@ -59,8 +59,11 @@ vim.o.showmode = false -- do not show -- MODE -- in cmdline
 vim.o.cmdheight = 1 -- height of the command line
 vim.o.colorcolumn = "80"
 vim.o.cursorline = true
+-- vim.o.splitkeep="screen" -- stabilizes window on open/close events. currently nightly build only.
 vim.o.splitright = true
 vim.o.splitbelow = true
+
+-- [[ status line ]] --
 vim.o.statusline = ""
 vim.opt.statusline:append("  %<%f") -- filename (F for full path)
 -- TODO: create a function so that %m doesnt prompt anything when modifiable is off
