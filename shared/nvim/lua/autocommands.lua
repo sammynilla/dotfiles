@@ -6,11 +6,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- disable comment newline
-vim.api.nvim_create_autocmd("BufWinEnter", {
+vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt_local.formatoptions:remove({ "c", "r", "o" })
   end,
-  pattern = { "*" },
+  pattern = { ".profile" }, -- add more file types or move to ftdetect?
   group = augroup_common,
 })
 
