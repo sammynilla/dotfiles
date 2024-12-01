@@ -7,7 +7,6 @@ EDITOR=/usr/bin/nvim;             export EDITOR;
 VISUAL=/usr/bin/nvim;             export VISUAL;
 
 # disable potentially active history files
-CALCHISTFILE=/dev/null;           export CALCHISTFILE;
 LESSHISTFILE=/dev/null;           export LESSHISTFILE;
 NODE_REPL_HISTORY="";             export NODE_REPL_HISTORY;
 PYTHONSTARTUP="$HOME/.pythonrc";  export PYTHONSTARTUP;
