@@ -18,17 +18,11 @@ alias q="exit"
 
 alias ls="ls --color=auto"
 alias mv="mv -i -v"
-alias df="duf"                  # dependency on "duf" package
+alias df="df -h -x efivarfs -x devtmpfs -x tmpfs"
+alias cat="bat -pp" # dependency on "bat" package
 alias mpv="mpv --keep-open=yes" # dependency on "mpv" package
-
-# silly typos on commands we use a lot
-alias ,,="cd .."
-alias :q="exit"
-alias l="ls --color=auto"
-alias cd..="cd .."
-alias mdkir="mkdir"
-alias sl="ls"
-alias sudp="sudo"
+# temporary spot for webcam, dependency on mpv
+alias webcam="mpv av://v4l2:/dev/video0 --profile=low-latency --untimed --vf=lavfi=hflip"
 
 # utility commands
 alias sc="sudo systemctl"
@@ -36,12 +30,11 @@ alias nc="networkctl"
 alias reboot="sudo reboot"
 alias halt="sudo shutdown -h now"
 
-# temporary spot for webcam command, with dependency on mpv
-alias webcam="mpv av://v4l2:/dev/video0 --profile=low-latency --untimed --vf=lavfi=hflip"
-
 PS1="[\u@\h \W]\$ "
-
-if [ -f "$HOME/.fnm/fnm" ]; then
-  export PATH=$HOME/.fnm:$PATH
-  eval "$(fnm env --use-on-cd)"
+BAT_STYLE="numbers,changes,rule,header,header-filesize"; export BAT_STYLE;
+WIZ_BIN_PATH="/opt/arm-openwiz-linux-gnu/bin"; export PATH="$WIZ_BIN_PATH:$PATH"
+FNM_PATH="$HOME/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env)"
 fi
