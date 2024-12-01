@@ -18,14 +18,15 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
   unset f
 fi
 
-xbindkeys           # source ~/.xbindkeysrc
-xset r rate 200 60  # adjust typematic rate of keyboard
+xbindkeys # source ~/.xbindkeysrc
+
+./xrandr-disconnect.sh & # xrandr disconnect hook
+# ./xrandr-connect.sh      # turn off laptop monitor if external monitor is enabled.
 
 # sets wallpaper using hsetroot and imlib2
-wallpaperbg=$HOME/.config/wallpaper.png
-[ -f "$wallpaperbg" ] && hsetroot -cover "$wallpaperbg"
+wallpaperbg="$HOME/.config/wallpaper.jpg"
+[ -f "$wallpaperbg" ] && hsetroot -solid rgb:16/16/16 -cover "$wallpaperbg"
 
-xautolock -time 10 -locker slock &
 dwmblocks &
 # exec dwm
 
