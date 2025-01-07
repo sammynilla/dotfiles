@@ -18,17 +18,15 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
   unset f
 fi
 
-xbindkeys # source ~/.xbindkeysrc
-
-./xrandr-disconnect.sh & # xrandr disconnect hook
-# ./xrandr-connect.sh      # turn off laptop monitor if external monitor is enabled.
+xbindkeys
 
 # sets wallpaper using hsetroot and imlib2
 wallpaperbg="$HOME/.config/wallpaper.jpg"
-[ -f "$wallpaperbg" ] && hsetroot -solid rgb:16/16/16 -cover "$wallpaperbg"
+[ -f "$wallpaperbg" ] && hsetroot -solid "#111" -cover "$wallpaperbg"
 
+fcitx5 -d
+picom -b
 dwmblocks &
-# exec dwm
 
 # allow for quick reloading of dwm when sigkill
 while :; do
