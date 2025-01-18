@@ -1,9 +1,5 @@
-##
-# Host Database
-#
-# localhost is used to configure the loopback interface
-# when the system is booting.  Do not change this entry.
-##
+# Static table lookup for host names.
+# See hosts(5) for details.
 127.0.0.1       localhost
 ::1             localhost
 
@@ -26,37 +22,3 @@
 0.0.0.0 funimation.com
 0.0.0.0 hulu.com
 0.0.0.0 netflix.com
-0.0.0.0 twitch.tv
-0.0.0.0 nicovideo.jp
-# Right-wing Media
-0.0.0.0 breitbart.com
-0.0.0.0 cnsnews.com
-0.0.0.0 conservativereview.com
-0.0.0.0 dailycaller.com
-0.0.0.0 dailysignal.com
-0.0.0.0 dailywire.com
-0.0.0.0 drudgereport.com
-0.0.0.0 foxnews.com
-0.0.0.0 freebeacon.com
-0.0.0.0 freerepublic.com
-0.0.0.0 hotair.com
-0.0.0.0 infowars.com
-0.0.0.0 ijr.com
-0.0.0.0 ijr.org
-0.0.0.0 lifezette.com
-0.0.0.0 louderwithcrowder.com
-0.0.0.0 newsmax.com
-0.0.0.0 pjmedia.com
-0.0.0.0 powerlineblog.com
-0.0.0.0 redstate.com
-0.0.0.0 rightsidenews.com
-0.0.0.0 rsbnetwork.com
-0.0.0.0 rsbnetwork.tv
-0.0.0.0 thefederalist.com
-0.0.0.0 thegatewaypundit.com
-0.0.0.0 therebel.media
-0.0.0.0 townhall.com
-0.0.0.0 twitchy.com
-0.0.0.0 unz.com
-0.0.0.0 westernjournal.com
-0.0.0.0 wnd.com
