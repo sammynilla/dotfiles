@@ -16,7 +16,7 @@ alias 5..="cd ../../../../.."
 
 alias q="exit"
 
-alias ls="ls --color=auto"
+alias ls="lsd" # dependency on lsd
 alias mv="mv -i -v"
 alias df="df -h -x efivarfs -x devtmpfs -x tmpfs"
 alias cat="bat -pp" # dependency on "bat" package
@@ -30,11 +30,26 @@ alias nc="networkctl"
 alias reboot="sudo reboot"
 alias halt="sudo shutdown -h now"
 
-PS1="[\u@\h \W]\$ "
+PS1='\[\e[1;33m\]「\[\e[0m\]$PWD \[\e[1;33m\]」\[\e[0m\]\n \[\e[1;33m\]▶\[\e[0m\] '
+PS1="$PS1\[\e[ m\]" # "\[\e[ m\]" acts as a scrollback marker for st
+
+MANPAGER="nvim +Man!"; [ -f "/usr/bin/nvim" ] && export MANPAGER;
 BAT_STYLE="numbers,changes,rule,header,header-filesize"; export BAT_STYLE;
-WIZ_BIN_PATH="/opt/arm-openwiz-linux-gnu/bin"; export PATH="$WIZ_BIN_PATH:$PATH"
-FNM_PATH="$HOME/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
+OPENWIZ_BIN="/opt/arm-openwiz-linux-gnu/bin"; export PATH="$PATH:$OPENWIZ_BIN"
+BROWSER=firefox; export BROWSER; # forgot why I added this, keeping for now.
+
+# might move this at some point
+PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"; export PKG_CONFIG_PATH;
+
+FNM="$HOME/.local/share/fnm"
+if [ -d "$FNM" ]; then
+  export PATH="$FNM:$PATH"
   eval "$(fnm env)"
+fi
+
+EMSDK="$HOME/emsdk"
+EMSCRIPTEN="$EMSDK/upstream/emscripten"
+if [ -d "$EMSDK" ] && [ -d "$EMSCRIPTEN" ]; then
+  export EMSDK;
+  export PATH="$EMSDK:$EMSCRIPTEN:$PATH"
 fi
