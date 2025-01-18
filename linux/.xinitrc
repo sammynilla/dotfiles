@@ -20,9 +20,8 @@ fi
 
 xbindkeys
 
-# sets wallpaper using hsetroot and imlib2
-wallpaperbg="$HOME/.config/wallpaper.jpg"
-[ -f "$wallpaperbg" ] && hsetroot -solid "#111" -cover "$wallpaperbg"
+WALLPAPER="$HOME/.config/wallpaper.jpg"
+[ -f "$WALLPAPER" ] && hsetroot -solid "#111" -cover "$WALLPAPER"
 
 fcitx5 -d
 picom -b
