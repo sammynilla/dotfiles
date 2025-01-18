@@ -14,9 +14,8 @@
 "slock"
   XF86ScreenSaver
 
-"$HOME/xrandr-connect.sh"
-  XF86Display
-
-# our dwm build utilizes imlib2 for icons, which can be used for taking screenshots.
-"$HOME/capture-screen.sh"
+"screenshot root"
   Print
+
+"screenshot clip"
+  Shift+Print
