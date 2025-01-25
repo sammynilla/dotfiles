@@ -21,7 +21,7 @@ fi
 xbindkeys
 
 WALLPAPER="$HOME/.config/wallpaper.jpg"
-[ -f "$WALLPAPER" ] && hsetroot -solid "#111" -cover "$WALLPAPER"
+[ -f "$WALLPAPER" ] && feh --no-fehbg --bg-fill "$WALLPAPER"
 
 fcitx5 -d
 picom -b

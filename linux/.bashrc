@@ -13,20 +13,16 @@ alias 2..="cd ../.."
 alias 3..="cd ../../.."
 alias 4..="cd ../../../.."
 alias 5..="cd ../../../../.."
-
-alias q="exit"
-
 alias ls="lsd" # dependency on lsd
+alias lss="lsd -a --blocks permission,user,size,name --size short"
 alias mv="mv -i -v"
 alias df="df -h -x efivarfs -x devtmpfs -x tmpfs"
 alias cat="bat -pp" # dependency on "bat" package
+alias feh="feh -F" # dependency on "feh"
 alias mpv="mpv --keep-open=yes" # dependency on "mpv" package
-# temporary spot for webcam, dependency on mpv
-alias webcam="mpv av://v4l2:/dev/video0 --profile=low-latency --untimed --vf=lavfi=hflip"
-
-# utility commands
-alias sc="sudo systemctl"
-alias nc="networkctl"
+alias ffmpeg="ffmpeg -hide_banner"
+alias webcam=""
+alias q="exit"
 alias reboot="sudo reboot"
 alias halt="sudo shutdown -h now"
 
