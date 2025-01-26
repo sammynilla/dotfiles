@@ -1,0 +1,51 @@
+From 6b595a56b32fb8a4d70a2deb698f67b24cd042c0 Mon Sep 17 00:00:00 2001
+From: Samantha Bartlett <sammynilla@protonmail.com>
+Date: Thu, 9 Jan 2025 09:52:15 -0900
+Subject: [PATCH 5/6] prevent shift+pageup and down while in altscreens
+
+---
+ config.def.h | 4 ++--
+ x.c          | 5 ++++-
+ 2 files changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index 3091928..492cbd9 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -222,8 +222,8 @@ static Shortcut shortcuts[] = {
+ 	{ TERMMOD,              XK_Y,           clippaste,      {.i =  0} },
+ 	{ ShiftMask,            XK_Insert,      clippaste,      {.i =  0} },
+ 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+-	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
+-    { ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
++	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1}, -1 },
++	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1}, -1 },
+ };
+ 
+ /*
+diff --git a/x.c b/x.c
+index cfc5d53..2669b69 100644
+--- a/x.c
++++ b/x.c
+@@ -27,6 +27,7 @@ typedef struct {
+ 	KeySym keysym;
+ 	void (*func)(const Arg *);
+ 	const Arg arg;
++	int  altscrn;  /* 0: don't care, -1: not alt screen, 1: alt screen */
+ } Shortcut;
+ 
+ typedef struct {
+@@ -2033,7 +2034,9 @@ kpress(XEvent *ev)
+ 	}
+ 	/* 1. shortcuts */
+ 	for (bp = shortcuts; bp < shortcuts + LEN(shortcuts); bp++) {
+-		if (ksym == bp->keysym && match(bp->mod, e->state)) {
++		if (ksym == bp->keysym &&
++			 (!bp->altscrn || (bp->altscrn == (tisaltscr() ? 1 : -1))) &&
++				match(bp->mod, e->state)) {
+ 			bp->func(&(bp->arg));
+ 			return;
+ 		}
+-- 
+2.47.1
+

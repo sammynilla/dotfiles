@@ -1,0 +1,25 @@
+From 8d4f51e76449359a9adae54c1fe4be4e78864883 Mon Sep 17 00:00:00 2001
+From: Samantha Bartlett <sammynilla@protonmail.com>
+Date: Thu, 9 Jan 2025 09:08:03 -0900
+Subject: [PATCH 2/6] scrollback mouse support
+
+---
+ config.def.h | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/config.def.h b/config.def.h
+index 2a62bc7..153ce29 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -194,6 +194,8 @@ static uint forcemousemod = ShiftMask;
+  */
+ static MouseShortcut mshortcuts[] = {
+ 	/* mask                 button   function        argument       release */
++	{ ShiftMask,            Button4, kscrollup,      {.i = 1} },
++	{ ShiftMask,            Button5, kscrolldown,    {.i = 1} },
+ 	{ XK_ANY_MOD,           Button2, clippaste,      {.i = 0},      1 },
+ 	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~"} },
+ 	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
+-- 
+2.47.1
+
