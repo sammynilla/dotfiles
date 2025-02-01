@@ -1,3 +1,16 @@
 #!/bin/sh
-BATTERY=$(cat /sys/class/power_supply/BAT0/capacity)
-echo " [B:$BATTERY]"
+BATTERY="/sys/class/power_supply/BAT0/capacity"
+AC_ADAPTER="/sys/class/power_supply/AC/online"
+AC_ACTIVE=$(cat $AC_ADAPTER)
+
+if [ -f $BATTERY ]; then
+  POWER=$(cat $BATTERY)
+  DISPLAY="🔋"
+  [ $POWER -lt 20 ] && DISPLAY="🪫";
+  case $AC_ACTIVE in
+    "0") echo " $DISPLAY "    ;;
+    "1") echo " $DISPLAY⚡ "  ;;
+  esac
+  exit
+fi
+echo " 🔌 "
