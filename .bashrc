@@ -30,12 +30,8 @@ PS1='\[\e[1;33m\]「\[\e[0m\]$PWD \[\e[1;33m\]」\[\e[0m\]\n \[\e[1;33m\]▶\[\e
 PS1="$PS1\[\e[ m\]" # "\[\e[ m\]" acts as a scrollback marker for st
 
 MANPAGER="nvim +Man!"; [ -f "/usr/bin/nvim" ] && export MANPAGER;
-BAT_STYLE="numbers,changes,rule,header,header-filesize"; export BAT_STYLE;
-OPENWIZ_BIN="/opt/arm-openwiz-linux-gnu/bin"; export PATH="$PATH:$OPENWIZ_BIN"
+# BAT_STYLE="numbers,changes,rule,header,header-filesize"; export BAT_STYLE;
 BROWSER=firefox; export BROWSER; # forgot why I added this, keeping for now.
-
-# might move this at some point
-PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"; export PKG_CONFIG_PATH;
 
 FNM="$HOME/.local/share/fnm"
 if [ -d "$FNM" ]; then
@@ -43,9 +39,16 @@ if [ -d "$FNM" ]; then
   eval "$(fnm env)"
 fi
 
-EMSDK="$HOME/emsdk"
+export PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin";
+
+OPENWIZ_BIN="/opt/arm-openwiz-linux-gnu/bin"; export PATH="$PATH:$OPENWIZ_BIN";
+# might move this at some point
+PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"; export PKG_CONFIG_PATH;
+EMSDK="/opt/emsdk"
 EMSCRIPTEN="$EMSDK/upstream/emscripten"
 if [ -d "$EMSDK" ] && [ -d "$EMSCRIPTEN" ]; then
   export EMSDK;
   export PATH="$EMSDK:$EMSCRIPTEN:$PATH"
 fi
+
+DOTNET_CLI_TELEMETRY_OPTOUT=1; export DOTNET_CLI_TELEMETRY_OPTOUT;
