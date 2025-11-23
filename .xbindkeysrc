@@ -1,0 +1,20 @@
+"wpctl set-mute @DEFAULT_SINK@ toggle"
+  XF86AudioMute
+
+"pactl set-source-mute alsa_input.pci-0000_00_1b.0.analog-stereo toggle | pactl set-source-mute alsa_input.usb-Blue_Microphones_Yeti_Stereo_Microphone_REV8-00.analog-stereo toggle"
+  XF86AudioMicMute
+
+"wpctl set-volume @DEFAULT_SINK@ 5%- --limit 1"
+  XF86AudioLowerVolume
+
+"wpctl set-volume @DEFAULT_SINK@ 5%+ --limit 1"
+  XF86AudioRaiseVolume
+
+"slock"
+  XF86ScreenSaver
+
+"screenshot root"
+  Print
+
+"screenshot clip"
+  Shift+Print

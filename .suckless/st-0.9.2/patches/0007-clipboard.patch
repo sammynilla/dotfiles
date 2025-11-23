@@ -1,0 +1,49 @@
+From c9b9c2a9b7c1511e3d6c75b63937dd58640068a8 Mon Sep 17 00:00:00 2001
+From: Samantha Bartlett <sammynilla@protonmail.com>
+Date: Thu, 9 Jan 2025 05:32:05 -0900
+Subject: [PATCH] clipboard patch
+
+---
+ config.def.h | 6 +++---
+ x.c          | 1 +
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index a7a3414..3a7c80b 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -188,7 +188,7 @@ static uint forcemousemod = ShiftMask;
+  */
+ static MouseShortcut mshortcuts[] = {
+ 	/* mask                 button   function        argument       release */
+-	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
++	{ XK_ANY_MOD,           Button2, clippaste,      {.i = 0},      1 },
+ 	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~"} },
+ 	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
+ 	{ ShiftMask,            Button5, ttysend,        {.s = "\033[6;2~"} },
+@@ -210,8 +210,8 @@ static Shortcut shortcuts[] = {
+ 	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
+ 	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
+ 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
+-	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
+-	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
++	{ TERMMOD,              XK_Y,           clippaste,      {.i =  0} },
++	{ ShiftMask,            XK_Insert,      clippaste,      {.i =  0} },
+ 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+ };
+ 
+diff --git a/x.c b/x.c
+index 029c2db..3629984 100644
+--- a/x.c
++++ b/x.c
+@@ -692,6 +692,7 @@ setsel(char *str, Time t)
+ 	XSetSelectionOwner(xw.dpy, XA_PRIMARY, xw.win, t);
+ 	if (XGetSelectionOwner(xw.dpy, XA_PRIMARY) != xw.win)
+ 		selclear();
++	clipcopy(NULL);
+ }
+ 
+ void
+-- 
+2.47.1
+
